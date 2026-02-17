@@ -8,8 +8,8 @@ This repository implements a lightweight HTTP client with OAuth2 token handling,
    (Linux)
 
 ```
-python3 -m venv eskalate
-source eskalate/bin/activate
+python3 -m venv <eskalate> # choose a name for the venv
+source <eskalate>/bin/activate
 ```
 
 Windows
