@@ -1,64 +1,55 @@
-# AI Experts Assignment (Python)
+# AI Experts Assignment – OAuth Client
 
-This assignment evaluates your ability to:
+This repository implements a lightweight HTTP client with OAuth2 token handling, plus a test suite and Docker configuration suitable for a CI environment.
 
-- set up a small Python project to run reliably (locally + in Docker),
-- pin dependencies for reproducible installs,
-- write focused tests to reproduce a bug,
-- implement a minimal, reviewable fix.
+## Getting Started (Local Implementation)
 
-## What you will do
+1. Create & activate a virtual environment
+   (Linux)
 
-### 1) Dockerfile (required)
+```
+python3 -m venv eskalate
+source eskalate/bin/activate
+```
 
-Create a `Dockerfile` so the project can run the test suite in a non-interactive, CI-style environment.
+Windows
 
-Requirements:
+```
+.\venv\Scripts\activate
+```
 
-- requirements.txt exists and is used during build (pip install -r requirements.txt)
-- pytest must be included/pinned in requirements.txt
-- The image must run tests by default (use: `CMD ["python", "-m", "pytest", "-v"]`).
-- The build must install dependencies from `requirements.txt`.
+2. Install dependencies
 
-### 2) requirements.txt (required)
+```
+pip install -r requirements.
+```
 
-Create a `requirements.txt` with pinned versions, using this format:
+3. Run tests locally
 
-- `package==x.y.z`
+```
+pytest -v
+```
 
-### 3) README updates (required)
+## Running Tests with Docker
 
-Update this README to include:
+1. Build the Docker image
 
-- how to run the tests locally,
-- how to build and run tests with Docker.
+```
+docker build -t client-tests .
+```
 
-### 4) Find + fix a bug (required)
+2. Run the test suite inside Docker
 
-There is a bug somewhere in this repository.
+```
+docker run --rm client-tests
+```
 
-Your tasks:
+This ensures tests run in a clean, reproducible environment identical to CI.
 
-- Identify the bug.
-- Apply the smallest possible fix to make the tests pass.
-- Keep the change minimal and reviewable (no refactors).
+### requirements.txt
 
-## Constraints
+Contains only the minimal pinned dependencies used by the application and tests.
 
-- Keep changes minimal and reviewable.
-- Do not refactor unrelated code.
-- Do not introduce extra tooling unless required.
-- You may add tests and the smallest code change needed to fix the bug.
+### Explanation.md
 
-### 5) EXPLANATION.md (required)
-
-Create `EXPLANATION.md` (max 250 words) containing:
-
-- **What was the bug?**
-- **Why did it happen?**
-- **Why does your fix solve it?**
-- **One realistic case / edge case your tests still don’t cover**
-
-## Submission
-
-- Submit a public GitHub repository URL containing your solution to the Google form link provided.
+Describes the identified bug, its cause, and the reasoning behind the fix.

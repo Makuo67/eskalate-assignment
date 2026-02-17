@@ -20,7 +20,8 @@ def test_token_from_iso_uses_dateutil():
 
 def test_api_request_sets_auth_header_when_token_is_valid():
     c = Client()
-    c.oauth2_token = OAuth2Token(access_token="ok", expires_at=int(time.time()) + 3600)
+    c.oauth2_token = OAuth2Token(
+        access_token="ok", expires_at=int(time.time()) + 3600)
 
     resp = c.request("GET", "/me", api=True)
 
@@ -39,6 +40,15 @@ def test_api_request_refreshes_when_token_is_missing():
 def test_api_request_refreshes_when_token_is_dict():
     c = Client()
     c.oauth2_token = {"access_token": "stale", "expires_at": 0}
+
+    resp = c.request("GET", "/me", api=True)
+
+    assert resp["headers"].get("Authorization") == "Bearer fresh-token"
+
+
+def test_dict_token_without_access_token_must_refresh():
+    c = Client()
+    c.oauth2_token = {"expires_at": 0}
 
     resp = c.request("GET", "/me", api=True)
 
